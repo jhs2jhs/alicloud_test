@@ -43,6 +43,12 @@
         - apt_packages is defined
         - ansible_pkg_mgr == "apt"
 
+    # General Python packages.
+    - name: install some pip packages
+      pip: name={{ item }} state=present
+      with_items: "{{ pip_packages }}"
+      when: pip_packages is defined
+
     # install Jupyter.
     - name: upgrade the six
       pip: name=six state=latest

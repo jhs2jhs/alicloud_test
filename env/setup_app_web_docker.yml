@@ -19,6 +19,12 @@
     - name: install docker via apt 
       apt: name=docker.io state=present
 
+    # General Python packages.
+    - name: install some pip packages
+      pip: name={{ item }} state=present
+      with_items: "{{ pip_packages }}"
+      when: pip_packages is defined
+
     - name: create project folder
       shell: mkdir -p /root/app_web_docker/
 
