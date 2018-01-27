@@ -64,7 +64,7 @@ c.NotebookApp.allow_origin = ''
 ## The base URL for the notebook server.
 #  
 #  Leading and trailing slashes can be omitted, and will automatically be added.
-#c.NotebookApp.base_url = '/'
+c.NotebookApp.base_url = '/jupyter/'
 
 ## Specify what command to use to invoke a web browser when opening the notebook.
 #  If not specified, the default browser will be determined by the `webbrowser`
@@ -73,7 +73,7 @@ c.NotebookApp.allow_origin = ''
 #c.NotebookApp.browser = u''
 
 ## The full path to an SSL/TLS certificate file.
-#c.NotebookApp.certfile = u''
+c.NotebookApp.certfile = u'/root/.jupyter/mycert.crt'
 
 ## The full path to a certificate authority certificate for SSL/TLS client
 #  authentication.
@@ -155,7 +155,7 @@ c.NotebookApp.allow_origin = ''
 #c.NotebookApp.iopub_msg_rate_limit = 0
 
 ## The IP address the notebook server will listen on.
-#c.NotebookApp.ip = 'localhost'
+c.NotebookApp.ip = '*'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #c.NotebookApp.jinja_environment_options = {}
@@ -198,7 +198,7 @@ c.NotebookApp.allow_origin = ''
 #  platform dependent and determined by the python standard library `webbrowser`
 #  module, unless it is overridden using the --browser (NotebookApp.browser)
 #  configuration option.
-#c.NotebookApp.open_browser = True
+c.NotebookApp.open_browser = False
 
 ## Hashed password to use for web authentication.
 #  
@@ -250,7 +250,7 @@ c.NotebookApp.token = ''
 ## Whether to trust or not X-Scheme/X-Forwarded-Proto and X-Real-Ip/X-Forwarded-
 #  For headerssent by the upstream reverse proxy. Necessary if the proxy handles
 #  SSL
-#c.NotebookApp.trust_xheaders = False
+c.NotebookApp.trust_xheaders = True
 
 ## DEPRECATED, use tornado_settings
 #c.NotebookApp.webapp_settings = {}
