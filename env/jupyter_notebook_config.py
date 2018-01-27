@@ -73,7 +73,7 @@ c.NotebookApp.base_url = '/jupyter/'
 #c.NotebookApp.browser = u''
 
 ## The full path to an SSL/TLS certificate file.
-c.NotebookApp.certfile = u'/root/.jupyter/mycert.crt'
+c.NotebookApp.certfile = u'/root/.jupyter/mycert.pem'
 
 ## The full path to a certificate authority certificate for SSL/TLS client
 #  authentication.
