@@ -23,6 +23,6 @@
         state=link
 
     - name: restart nginx service
-      shell: sudo systemctl restart nginx
+      shell: systemctl restart nginx
     
   
