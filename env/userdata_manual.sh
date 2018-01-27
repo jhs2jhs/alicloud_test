@@ -98,7 +98,7 @@ systemctl restart nginx
 ######################################################
 # install mysql client
 ######################################################
-apt-get install mysql-client
+apt-get -y install mysql-client
 
 pip install mysql-connector-python
 pip3 install mysql-connector-python

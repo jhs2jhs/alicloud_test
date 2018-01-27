@@ -17,16 +17,35 @@ upstream app_ftp {
 }
 
 server {
-        listen 8888;
-        listen [::]:8888;
+        listen 443;
+        listen [::]:443;
         location / {
             proxy_pass http://app_notebook/;
-            proxy_set_header        X-Real-IP $remote_addr;
-            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header        X-Forwarded-Proto $scheme;
             proxy_set_header        HOST $host;
-            proxy_read_timeout      90;
-            proxy_redirect    off;
+            
+            # websocket support
+            proxy_http_version    1.1;
+            proxy_set_header      Upgrade "websocket";
+            proxy_set_header      Connection "Upgrade";
+            proxy_read_timeout    86400;
+        }
+        location ~ /api/kernels/ {
+            proxy_pass            http://app_notebook;
+            proxy_set_header      Host $host;
+            # websocket support
+            proxy_http_version    1.1;
+            proxy_set_header      Upgrade "websocket";
+            proxy_set_header      Connection "Upgrade";
+            proxy_read_timeout    86400;
+        }
+        location ~ /terminals/ {
+            proxy_pass            http://app_notebook;
+            proxy_set_header      Host $host;
+            # websocket support
+            proxy_http_version    1.1;
+            proxy_set_header      Upgrade "websocket";
+            proxy_set_header      Connection "Upgrade";
+            proxy_read_timeout    86400;
         }
 }
 
