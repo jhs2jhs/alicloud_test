@@ -16,11 +16,15 @@
       shell: unlink /etc/nginx/sites-enabled/default
       when: default_config_file.stat.exists == True
 
+    - stat: path=/etc/nginx/sites-enabled/jian_task1.conf
+      register: app_config_file
+
     - name: link config
       file: >
         src=/etc/nginx/sites-available/jian_task1.conf
         dest=/etc/nginx/sites-enabled/jian_task1.conf
         state=link
+      when: app_config_file.stat.exists == True
 
     - name: restart nginx service
       shell: systemctl restart nginx
