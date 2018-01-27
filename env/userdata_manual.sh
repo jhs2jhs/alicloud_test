@@ -20,12 +20,22 @@ cd /root/.ssh/; wget -O id_rsa https://raw.githubusercontent.com/jianhuashao/ali
 # install jupyter
 ######################################################
 export LC_ALL=C
-apt-get -y install python2.7 python-pip python-dev, python3-pip
+apt-get -y install python2.7 python-pip python-dev python-setuptools build-essential
+apt-get -y install python3-pip python3-dev python3-pip python3-setuptools build-essential
 apt-get -y install ipython ipython-notebook
-pip install jupyter
-pip3 install jupyter
+
+pip install --upgrade pip
+pip3 install --upgrade pip
+
+sudo -H pip install jupyter
+sudo -H pip3 install jupyter
+pip install -U jupyter ipython
+pip3 install -U jupyter ipython
+ipython kernel install
+ipython3 kernel install
+
 mkdir -p /root/.jupyter
-cd /root/.jupyter; wget -O jupyter_notebook_config.py https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/setup_jupyter.yml
+cd /root/.jupyter/; wget -O jupyter_notebook_config.py https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/jupyter_notebook_config.py
 cd /root; wget -O nb_ansible_on_jupyter_ubuntu.ipynb https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_ansible_on_jupyter_ubuntu.ipynb
 if pgrep jupyter; then pkill jupyter; fi
 nohup jupyter-notebook --ip 0.0.0.0 --port 8888 --no-browser --allow-root --notebook-dir=/root &
@@ -69,10 +79,22 @@ cd /root; chmod +x create_nginx_config.sh
 cd /root; sh create_example_com.sh
 cd /root; sh create_nginx_config.sh
 
-unlink /etc/nginx/sites-enabled/default
+[ -f /etc/nginx/sites-enabled/default ] && unlink /etc/nginx/sites-enabled/default
+[ -f /etc/nginx/sites-enabled/jian_task1.conf  ] && unlink /etc/nginx/sites-enabled/jian_task1.conf 
 
 ln -s /etc/nginx/sites-available/jian_task1.conf /etc/nginx/sites-enabled/
 
 systemctl restart nginx
 
 # http://ip:80, http://ip:80/html/index.html, http://ip:80/docker, http://ip:443
+
+
+
+
+
+
+
+######################################################
+# install mysql client
+######################################################
+apt-get install mysql-client

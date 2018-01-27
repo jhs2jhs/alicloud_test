@@ -17,8 +17,8 @@ upstream app_ftp {
 }
 
 server {
-        listen 443;
-        listen [::]:443;
+        listen 8888;
+        listen [::]:8888;
         location / {
             proxy_pass http://app_notebook/;
             proxy_set_header        X-Real-IP $remote_addr;
