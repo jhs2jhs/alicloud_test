@@ -21,8 +21,8 @@ server {
         listen [::]:443;
         ssl                       on;
         # server_name               notebook.mydomain.com www.notebook.mydomain.com;
-        ssl_certificate           /root/.jupyter/mycert.crt;
-        ssl_certificate_key       /root/.jupyter/mycert.crt;
+        ssl_certificate           /root/.jupyter/mycert.pem;
+        ssl_certificate_key       /root/.jupyter/mycert.pem;
         ssl_protocols             TLSv1 TLSv1.1 TLSv1.2;
         access_log                /root/.jupyter/log/nginx.access.log;
         error_log                 /root/.jupyter/log/nginx.error.log;

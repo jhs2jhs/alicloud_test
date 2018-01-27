@@ -35,7 +35,7 @@ ipython kernel install
 ipython3 kernel install
 
 mkdir -p /root/.jupyter
-cd /root/.jupyter/; wget -O mycert.crt https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/mycert.crt
+cd /root/.jupyter/; wget -O mycert.pem https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/mycert.pem
 cd /root/.jupyter/; wget -O jupyter_notebook_config.py https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/jupyter_notebook_config.py
 cd /root; wget -O nb_ansible_on_jupyter_ubuntu.ipynb https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_ansible_on_jupyter_ubuntu.ipynb
 cd /root; wget -O nb_rds_mysql_demo.ipynb https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_rds_mysql_demo.ipynb
