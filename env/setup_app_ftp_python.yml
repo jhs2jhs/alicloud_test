@@ -1,0 +1,10 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- hosts: localhost
+
+  tasks: # setup a simplehttpserver via python
+    - name: start http.server
+      shell: nohup python3 -m http.server 8021 --bind 127.0.0.1 --cgi &
+    
+  

@@ -1,0 +1,45 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- hosts: localhost
+
+  vars:
+    # Python depedency to use docker via ansible
+    pip_packages:
+      - docker-py
+      - docker-compose
+
+    dockerfile_url: "https://raw.githubusercontent.com/crccheck/docker-hello-world/master/Dockerfile"
+    html_url: "https://raw.githubusercontent.com/crccheck/docker-hello-world/master/index.html"
+
+  tasks: # setup docker web server
+
+    # this is only a simple to install docker
+    # TODO: configure docker in a formal way
+    - name: install docker via apt 
+      apt: name=docker.io state=present
+
+    - name: create project folder
+      shell: mkdir -p /root/app_web_docker/
+
+    - name: get docker file
+      get_url: url={{ dockerfile_url }} dest=/root/app_web_docker/ mode=0644
+
+    - name: get html file
+      get_url: url={{ html_url }} dest=/root/app_web_docker/ mode=0644
+
+    - name: build the image
+      docker_image: >
+        name=web_docker_by_ansible
+        tag=ex1
+        path=/root/app_web_docker
+        state=present
+
+    - name: run the site in a docker container
+      docker:
+        name: app_web_docker
+        image: "web_docker_by_ansible:ex1"
+        state: reloaded
+        publish_all_ports: yes
+    
+  

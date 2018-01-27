@@ -1,0 +1,28 @@
+#!/usr/bin/env ansible-playbook
+---
+
+- hosts: localhost
+
+  tasks: # setup docker web server
+
+    - name: install nginx via apt 
+      apt: name=nginx state=present
+
+    # check if the default config file exist or not
+    - stat: path=/etc/nginx/sites-enabled/default
+      register: default_config_file
+
+    - name: unlink default
+      shell: unlink /etc/nginx/sites-enabled/default
+      when: default_config_file.stat.exists == True
+
+    - name: link config
+      file: >
+        src=/etc/nginx/sites-available/jian_task1.conf
+        dest=/etc/nginx/sites-enabled/jian_task1.conf
+        state=link
+
+    - name: restart nginx service
+      shell: sudo systemctl restart nginx
+    
+  
