@@ -29,7 +29,8 @@
 
     # jupyter configuration files # todo to change it
     jupyter_notebook_config_py_url: "https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/jupyter_notebook_config.py"
-    notebook_url: "https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_ansible_on_jupyter_ubuntu.ipynb"
+    notebook_ansible_url: "https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_ansible_on_jupyter_ubuntu.ipynb"
+    notebook_rds_mysql_url: "https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_rds_mysql_demo.ipynb"
 
   tasks:
     # General Linux.
@@ -74,8 +75,10 @@
         checksum=md5:c663914a24281ddf10df6bc9e7238b07
 
     # Get the example notebook
-    - name: get the example notebook
+    - name: get the example notebook for ansible
       get_url: url={{ notebook_url }} dest=/root/ mode=0644
+    - name: get the example notebook for rds
+      get_url: url={{ notebook_rds_mysql_url }} dest=/root/ mode=0644
 
     - name: kill jupyter process if we already have it, to avoid port conflict
       shell: if pgrep jupyter; then pkill jupyter; fi

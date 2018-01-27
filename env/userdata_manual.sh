@@ -37,6 +37,7 @@ ipython3 kernel install
 mkdir -p /root/.jupyter
 cd /root/.jupyter/; wget -O jupyter_notebook_config.py https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/env/jupyter_notebook_config.py
 cd /root; wget -O nb_ansible_on_jupyter_ubuntu.ipynb https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_ansible_on_jupyter_ubuntu.ipynb
+cd /root; wget -O nb_rds_mysql_demo.ipynb https://raw.githubusercontent.com/jianhuashao/alicloud_test/master/notebook/nb_rds_mysql_demo.ipynb
 if pgrep jupyter; then pkill jupyter; fi
 nohup jupyter-notebook --ip 0.0.0.0 --port 8888 --no-browser --allow-root --notebook-dir=/root &
 
