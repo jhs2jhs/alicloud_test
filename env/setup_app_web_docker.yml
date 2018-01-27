@@ -35,17 +35,9 @@
       get_url: url={{ html_url }} dest=/root/app_web_docker/ mode=0644
 
     - name: build the image
-      docker_image: >
-        name=web_docker_by_ansible
-        tag=ex1
-        path=/root/app_web_docker
-        state=present
+      shell: cd /root/app_web_docker/; docker build . -t web_docker
 
     - name: run the site in a docker container
-      docker:
-        name: app_web_docker
-        image: "web_docker_by_ansible:ex1"
-        state: reloaded
-        publish_all_ports: yes
+      shell: cd /root/app_web_docker/; docker run -d --name web_docker -p 32768:8000 web_docker
     
   

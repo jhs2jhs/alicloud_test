@@ -18,6 +18,11 @@
     apk_packages:
       - openssh-client
       - vim
+      - python3-pip
+
+    # Python depedency to use docker via ansible
+    pip_packages:
+      - jupyter
 
     # Debian, Ubuntu.
     apt_packages: "{{ apk_packages }}"
@@ -42,6 +47,9 @@
       when:
         - apt_packages is defined
         - ansible_pkg_mgr == "apt"
+
+    - name: set local
+      shell: export LC_ALL=C
 
     # General Python packages.
     - name: install some pip packages
