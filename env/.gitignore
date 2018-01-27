@@ -1,2 +1,3 @@
 *.yml
 *terraform/*
+*ipynb_checkpoints*
