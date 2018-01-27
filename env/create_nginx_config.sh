@@ -27,7 +27,7 @@ server {
         access_log                /root/.jupyter/log/nginx.access.log;
         error_log                 /root/.jupyter/log/nginx.error.log;
         location / {
-            proxy_pass http://app_notebook/;
+            proxy_pass https://app_notebook/;
             proxy_set_header        HOST $host;
 
             # websocket support
@@ -37,7 +37,7 @@ server {
             proxy_read_timeout    86400;
         }
         location ~ /api/kernels/ {
-            proxy_pass            http://app_notebook;
+            proxy_pass            https://app_notebook;
             proxy_set_header      Host $host;
             # websocket support
             proxy_http_version    1.1;
@@ -46,7 +46,7 @@ server {
             proxy_read_timeout    86400;
         }
         location ~ /terminals/ {
-            proxy_pass            http://app_notebook;
+            proxy_pass            https://app_notebook;
             proxy_set_header      Host $host;
             # websocket support
             proxy_http_version    1.1;
