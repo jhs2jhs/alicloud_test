@@ -5,7 +5,7 @@ apt-get update -y
 echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
 # install base package
-apt-get -y install bash-completion ca-certificates curl git openssl sshpass openssh-client
+apt-get -y install bash-completion ca-certificates curl git openssl sshpass openssh-client ansible
 
 # setup ssh
 mkdir -p /root/.ssh
@@ -52,6 +52,7 @@ nohup jupyter-notebook --ip 0.0.0.0 --port 8888 --no-browser --allow-root --note
 ######################################################
 # configure docker web server
 ######################################################
+apt-get -y install docker.io
 mkdir -p /root/app_web_docker/
 cd /root/app_web_docker/; wget -O Dockerfile https://raw.githubusercontent.com/crccheck/docker-hello-world/master/Dockerfile
 cd /root/app_web_docker/; wget -O index.html https://raw.githubusercontent.com/crccheck/docker-hello-world/master/index.html
