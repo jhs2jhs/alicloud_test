@@ -5,7 +5,7 @@ apt-get update -y
 echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
 # install base package
-apt-get install -y bash-completion, ca-certificates, curl, git, openssl, sshpass, openssh-client
+apt-get -y install bash-completion ca-certificates curl git openssl sshpass openssh-client
 
 # setup ssh
 mkdir -p /root/.ssh

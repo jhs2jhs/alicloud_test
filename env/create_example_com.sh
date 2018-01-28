@@ -1,7 +1,7 @@
 #!/bin/bash -v
 
 # install nginx
-apt-get install nginx -y
+apt-get -y install nginx
 
 # create html index
 mkdir -p /var/www/example.com/html
