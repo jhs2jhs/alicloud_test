@@ -4,3 +4,4 @@
 config_alicloud_accesskey.txt
 REPORT.md
 report/*
+notebook/data/*
